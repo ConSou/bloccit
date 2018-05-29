@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_23_223530) do
+ActiveRecord::Schema.define(version: 2018_05_29_151609) do
 
   create_table "advertisements", force: :cascade do |t|
     t.string "title"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2018_05_23_223530) do
   create_table "questions", force: :cascade do |t|
     t.string "title"
     t.string "body"
-    t.boolean "resolved"
+    t.boolean "resolved", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
