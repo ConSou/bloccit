@@ -1,0 +1,17 @@
+<h1>Edit Sponsored Posts</h1>
+
+
+  <%= form_for [@sponsored_post.topic, @sponsored_post] do |f| %>
+
+    <%= f.label :title %>
+    <%= f.text_field :title, class: "form-control", placeholder: "Enter Post Title" %>
+
+    <%= f.label :body %>
+    <%= f.text_field :body, rows: 8, class: "form-control", placeholder: "Enter Post Body" %>
+
+    <%= f.label :price %>
+    <%= f.number_field :price, class: "form-control", placeholder: "Enter Post Body" %>
+
+    <%= f.submit "Save", class: "btn btn-success" %>
+
+  <% end %>

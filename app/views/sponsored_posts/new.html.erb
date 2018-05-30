@@ -1,0 +1,16 @@
+<h1>New Sponsored Post</h1>
+
+<%= form_for [@topic, @sponsored_post] do |f| %>
+
+<%= f.label :title %>
+<%= f.text_field :title %>
+
+<%= f.label :body %>
+<%= f.text_area :body %>
+
+<%= f.label :price %>
+<%= f.number_field :price %>
+
+<%= f.submit "Save", class: "btn btn-success" %>
+
+<% end %>
