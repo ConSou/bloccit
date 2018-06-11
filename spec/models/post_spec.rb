@@ -81,11 +81,24 @@ RSpec.describe Post, type: :model do
       end
 
       it "updates the rank when a down vote is created" do
-        
+
       old_rank = post.rank
       post.votes.create!(value: -1, user: user)
       expect(post.rank).to eq (old_rank - 1)
     end
+  end
+end
+
+  describe "#create_vote" do
+
+    it "it initally adds one upvote to post" do
+      
+      expect(post.up_votes).to eq(1)
+    end
+
+    it "links the first vote to the user who created post" do
+
+      expect(post.votes.first.user).to eq(post.user)
     end
   end
 end
