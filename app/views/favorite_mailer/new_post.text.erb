@@ -1,0 +1,8 @@
+You created "<% @post.title %>"
+<%= "=" * (@post.title.length + 12) %>
+
+You will receive email notifications when comments are made on your post!
+
+<%= @post.body %>
+
+Visit Online at: <%= topic_post_url(@post.topic, @post) %>
