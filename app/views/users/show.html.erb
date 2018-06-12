@@ -19,8 +19,28 @@
   </div>
 </div>
 
+<% if no_posts? %>
+<h2>
+<%= "#{@user.name} has not submitted any posts" %>
+</h2>
+<% else %>
 <h2> Posts </h2>
 <%= render @user.posts %>
 
 <h2> Comments </h2>
 <%= render @user.comments %>
+<% end %>
+
+<h2> Favorited Posts </h2>
+<% @user.favorites.each do |fav| %>
+  <div class="media-body pull-left">
+    <%= render partial: 'votes/voting', locals: {post: fav.post} %>
+    <%= link_to fav.post.title, topic_post_path(fav.post.topic, fav.post) %>
+    <br>
+    <%= image_tag fav.post.user.avatar_url(24) %>
+    <small>
+      Created by: <%= fav.post.user.name %>
+      with <%= pluralize(fav.post.comments.count, 'comment') %>
+    </small>
+  </div>
+<% end %>
