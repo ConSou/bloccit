@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe SessionsController, type: :controller do
-  let(:my_user) {User.create!(name: "BlocHead", email: "blochead@bloc.com", password: "password")}
+  let(:my_user) {create(:user)}
 
   describe "GET new" do
 
@@ -66,7 +66,7 @@ RSpec.describe SessionsController, type: :controller do
     end
 
     it "flashes #notice" do
-      
+
       delete :destroy, params: { id: my_user.id }
       expect(flash[:notice]).to be_present
     end
