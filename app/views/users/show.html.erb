@@ -19,17 +19,11 @@
   </div>
 </div>
 
-<% if no_posts? %>
-<h2>
-<%= "#{@user.name} has not submitted any posts" %>
-</h2>
-<% else %>
 <h2> Posts </h2>
-<%= render @user.posts %>
+<%= show_posts_if_any(@user)%>
 
 <h2> Comments </h2>
-<%= render @user.comments %>
-<% end %>
+<%= show_comments_if_any(@user)%>
 
 <h2> Favorited Posts </h2>
 <% @user.favorites.each do |fav| %>
