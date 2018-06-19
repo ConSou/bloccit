@@ -1,15 +1,40 @@
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the UsersHelper. For example:
-#
-# describe UsersHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe UsersHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:user) {create(:user)}
+  let(:topic) {create(:topic)}
+
+  describe "#show_posts_if_any" do
+
+    it "will show user has submitted no posts" do
+      expect(helper.show_posts_if_any(user)).to eq("<p>#{user.name} has not submitted any posts</p>")
+    end
+
+    context "user created post" do
+    before do
+      @post = create(:post, topic: topic, user: user)
+    end
+
+    it "will show user posts if they have created posts" do
+      expect(helper.show_posts_if_any(user)).to eq(render partial: 'posts/post', locals: {post: @post})
+    end
+    end
+  end
+
+  describe "#show_comments_if_any" do
+
+    it "will show user has submitted no comments" do
+      expect(helper.show_comments_if_any(user)).to eq("<p>#{user.name} has not submitted any comments</p>")
+    end
+
+    context "user created comment" do
+    before do
+      @comment = create(:comment, user: user)
+    end
+
+    it "will show user comments if they have created comments" do
+      expect(helper.show_comments_if_any(user)).to eq(render partial: 'comments/comment', locals: {comment: @comment})
+    end
+  end
+  end
 end
